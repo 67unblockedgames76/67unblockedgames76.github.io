@@ -1,0 +1,134 @@
+
+<footer>
+        <div class="footer-section">
+            <h5>📖 About Us</h5>
+            <p>Enjoy playing our unblocked games for free! Perfect for fun, casual gaming.
+Learn, play, and collaborate in a fun and interactive environment. Level up your gaming experience with our classroom6x games! No downloads required. 
+
+</p>
+        </div>
+        <div class="footer-section">
+            <h5>🔥Games🔥</h5>
+            <ul>
+                <li>🏆 <a href="{{ "" | absLangURL }}">Popular</a></li>
+                <li>⚔️ <a href="{{ "" | absLangURL }}action/">Action</a></li>
+                <li>🐉 <a href="{{ "" | absLangURL }}adventure/">Adventure</a></li>
+                <li>🚗 <a href="{{ "" | absLangURL }}car/">Car</a></li>
+                <li>🎮 <a href="{{ "" | absLangURL }}idle/">idle</a></li>
+                <li>🔫 <a href="{{ "" | absLangURL }}shooting/">Shooting</a></li>
+                <li>⚽ <a href="{{ "" | absLangURL }}sports/">Sports</a></li>
+                <li>🎲 <a href="{{ "" | absLangURL }}skill/">Skill</a></li>
+                <li>🚲 <a href="{{ "" | absLangURL }}bike/">Bike</a></li>
+            </ul>
+        </div>
+        <!--div class="footer-section">
+            <h5>Links</h5>
+            <ul>
+                <li><a href="#">Link 3</a></li>
+                <li><a href="#">Link 4</a></li>
+            </ul>
+        </div-->
+        <div class="footer-section">
+            <h5>💡 Info</h5>
+            <ul>
+                <!--li>🌐 <a href="{{ "" | absLangURL }}">Website</a></li>
+                <li>𝕏 <a href="#">Twitter</a></li-->
+                <li>📧 <a href="{{ "" | absLangURL }}Contact-Us/">Contact Us</a></li>
+				<li>🔐  <a href="{{ "" | absLangURL }}Privacy-Policy/">Privacy Policy</a></li>
+				<li>🎉 <a href="{{ "" | absLangURL }}Terms/">Terms of Service</a></li>
+				<li>⚔️ <a href="{{ "" | absLangURL }}DMCA/">DMCA</a></li>
+				
+				<li>🐙 <a href="https://github.com/online-generator/unblocked-games/">Github</a></li>
+				<li>🔍 <a href="{{ "" | absLangURL }}tags/">Tags</a></li>
+				
+				
+            </ul>
+        </div>
+    </footer>
+	
+<!--lazy load gallery images-->	
+<script>
+function lazyLoadImages() {
+  const images = document.querySelectorAll('.thumbnail');
+  const inViewThreshold = 100; // Adjust this value as needed
+
+  images.forEach(image => {
+    const rect = image.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    if (rect.top + inViewThreshold >= 0 && rect.bottom - inViewThreshold <= windowHeight) {
+      image.src = image.getAttribute('data-src');
+    }
+  });
+}
+
+window.addEventListener('load', lazyLoadImages);
+window.addEventListener('scroll', lazyLoadImages);
+</script>
+
+<script>
+function iframeFullScreen() {
+            const myIframe = document.getElementById('game-area');
+            // Request fullscreen for the iframe
+            if (myIframe.requestFullscreen) {
+                myIframe.requestFullscreen();
+            } else if (myIframe.mozRequestFullScreen) { // For Firefox
+                myIframe.mozRequestFullScreen();
+            } else if (myIframe.webkitRequestFullscreen) { // For Chrome, Safari, and Opera
+                myIframe.webkitRequestFullscreen();
+            } else if (myIframe.msRequestFullscreen) { // For IE/Edge
+                myIframe.msRequestFullscreen();
+            }
+        };
+</script>
+
+<script>
+function openInAboutBlank() {
+        var urlObj = new window.URL(window.location.href);
+        var url = document.getElementById('game-area').src;console.log(url);
+
+        if (url) {
+            var win;
+            
+                if (win) {
+                    win.focus();
+                } else {
+                    win = window.open();
+                    win.document.body.style.margin = '0';
+                    win.document.body.style.height = '100vh';
+                    var iframe = win.document.createElement('iframe');
+                    iframe.style.border = 'none';
+                    iframe.style.width = '100%';
+                    iframe.style.height = '100%';
+                    iframe.style.margin = '0';
+                    iframe.src = url;
+                    win.document.body.appendChild(iframe);
+                    
+
+                    var interval = setInterval(function() {
+                        if (win.closed) {
+                            clearInterval(interval);
+                            win = undefined;
+
+                        }
+                    }, 500);
+
+
+                }
+            
+        }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	
+
+
+{{ partial "google-analytics.html" . }}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!--title>{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ .Site.Title }} - {{ $.Site.Params.subtitle }}</title-->
+	
+	<!-- Site Title, Description, Author, and Favicon -->
+	
+	
+	
+	{{ if .IsHome }}
+    <title>{{ .Site.Title }} - {{ .Site.Params.subtitle }}</title>
+    {{ if (isset .Site.Params "description") }}
+        <meta name="description" content="{{ .Site.Params.description }}">
+    {{ end }}
+{{ else if eq .Kind "page" }}
+    <title>{{ .Title }} - {{ .Site.Title }}</title>
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+{{ else if eq .Kind "term" }}
+    <title>{{ .Title | title }} Games - {{ .Site.Title }}</title>
+    <meta name="description" content="{{ index .Site.Data.tagsMetaDescription  .Title  | safeHTML }}">
+{{ else if eq .Kind "taxonomy" }}
+    <title>Browse Games by Tags - Find Your Favorite Genres - {{ .Site.Title }}</title>
+    <meta name="description" content="Explore a wide variety of online games categorized by tags. Whether you're into action, adventure, racing, or puzzle games, find the perfect game for you.">
+{{ else }}
+    <title>{{ .Site.Title }}</title>
+    <meta name="description" content="{{ .Site.Params.description }}">
+{{ end }}
+
+{{ with .Site.Params.Author }}
+    <meta name="author" content="{{ . }}">
+{{ end }}
+
+
+{{- partial "seo/main.html" . }} 
+
+
+	
+	<!-- Favicon -->
+	<link rel="apple-touch-icon" sizes="180x180" href="{{ "" | absLangURL }}img/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="{{ "" | absLangURL }}img/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="{{ "" | absLangURL }}img/favicon/favicon-16x16.png">
+
+
+	
+
+	{{ with .OutputFormats.Get "rss" -}}
+		{{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+	{{ end -}}
+	
+	<!--my additions-->
+	<meta name="robots" content="index, follow">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+    
+    
+    <!--Site Main Style css-->
+    <link rel="stylesheet" href="{{ "" | absLangURL }}css/styles.css">
+	
+	
+    <!--fonts added in footer to reduce large contentful painting, to increase page speed-->
+	
+    <!--link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"-->
+
+</head>

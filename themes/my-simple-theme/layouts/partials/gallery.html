@@ -1,0 +1,37 @@
+<div class="game-card">
+	
+{{ $image := .Page.Params.image }}
+  {{ if $image }}  <!-- Check if the image is not empty or nil -->
+    {{ $imageResource := resources.Get $image }}
+    {{ if $imageResource }}  <!-- Check if the resource was successfully retrieved -->
+        {{ $processedImage := $imageResource.Resize "255x255 webp" }} <!--pagespeed inshite, best practise, if display size is 177 then, image size should be 255-->
+		
+		{{ $index := .Index }} <!--index are in parent templates(index,terms,list,taxonomy, and passed to here-->
+		
+        <a href="{{ .Page.RelPermalink }}" title="Play: {{ .Page.Title }}">
+		{{ if le $index 5 }}
+		<img  width="170" height="170"  src="{{ $processedImage.Permalink }}" alt="{{ .Page.Title }}" />
+			 
+		{{ else }}
+		<img loading="lazy" class="thumbnail" width="170" height="170"  
+			 src="{{ "" | absLangURL }}img/placeholder.webp" 
+			 data-src="{{ $processedImage.Permalink }}" 
+			 alt="{{ .Page.Params.gametitle }}" />
+		{{ end }}
+		
+	    </a>
+    {{ else }}
+        <!-- Handle the case where the resource could not be found -->
+        <!-- You might want to show a default image or leave this section empty -->
+  {{ end }}
+  
+  {{ else }}
+    <!-- Handle the case where .Params.image is not set -->
+    <!-- You might want to show a default image or leave this section empty -->
+  {{ end }}
+
+
+	<h4><a href="{{ .Page.RelPermalink }}" title="Play {{ .Page.Params.gametitle }} Unblocked">{{ .Page.Params.gametitle }}</a></h4>
+</div>
+
+

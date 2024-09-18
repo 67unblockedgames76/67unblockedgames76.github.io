@@ -1,0 +1,8 @@
+{{- partial "seo/structured/website" . }}
+{{- partial "seo/structured/organization" . }}
+{{ if .IsPage }}
+{{- partial "seo/structured/breadcrumb" . }}
+{{- partial "seo/structured/article" . }}
+{{- partial "seo/structured/game" . }}
+{{- partial "seo/structured/rating" . }}
+{{ end }}

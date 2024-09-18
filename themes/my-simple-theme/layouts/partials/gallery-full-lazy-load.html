@@ -1,0 +1,31 @@
+<div class="game-card">
+	
+{{ $image := .Params.image }}
+  {{ if $image }}  <!-- Check if the image is not empty or nil -->
+    {{ $imageResource := resources.Get $image }}
+    {{ if $imageResource }}  <!-- Check if the resource was successfully retrieved -->
+        {{ $processedImage := $imageResource.Resize "170x170 webp" }}	
+		
+		
+        <a href="{{ .RelPermalink }}" title="{{ .Title }}">
+		
+		<img loading="lazy" class="thumbnail" width="170" height="170"  
+			 src="{{ "" | absLangURL }}img/placeholder.webp" 
+			 data-src="{{ $processedImage.Permalink }}" 
+			 alt="{{ .Title }}" />		
+	    </a>
+    {{ else }}
+        <!-- Handle the case where the resource could not be found -->
+        <!-- You might want to show a default image or leave this section empty -->
+  {{ end }}
+  
+  {{ else }}
+    <!-- Handle the case where .Params.image is not set -->
+    <!-- You might want to show a default image or leave this section empty -->
+  {{ end }}
+
+
+	<h4><a href="{{ .RelPermalink }}" title="Play {{ .Page.Params.gametitle }} Unblocked">{{ .Page.Params.gametitle }}</a></h4>
+</div>
+
+

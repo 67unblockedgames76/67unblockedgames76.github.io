@@ -1,0 +1,81 @@
+{{ partial "header.html" . }}
+
+<body>
+    <header>
+        {{ partial "nav.html" . }}
+    </header>
+
+    <main>
+	    <section class="banner-ad">
+            {{ partial "banner-ads.html" . }}
+        </section>
+		
+		<h1>Play: {{ .Params.gametitle }}</h1>
+		
+        <section class="game-iframe">
+		    
+		    {{ if .Site.IsServer }}
+				<!--iframe src="{{ "" | absLangURL }}t-rex-runner/index.html" id="game-area" scrolling="none" frameborder="0" allowfullscreen="" tabindex="0"  title="{{ .Params.gametitle }}: Play {{ .Params.gametitle }} Online for Free"></iframe-->
+                <iframe src="{{ .Params.embedUrl }}" id="game-area" scrolling="none" frameborder="0" allowfullscreen="" tabindex="0" title="{{ .Params.gametitle }}: Play {{ .Params.gametitle }} Online for Free"></iframe>
+
+			{{ else }}
+				<iframe src="{{ .Params.embedUrl }}" id="game-area" scrolling="none" frameborder="0" allowfullscreen="" tabindex="0" title="{{ .Params.gametitle }}: Play {{ .Params.gametitle }} Online for Free"></iframe>
+			{{ end }}
+                <button onclick="iframeFullScreen();" class="Button">Full Screen</button>
+                <button onclick="openInAboutBlank();" class="Button">Open In Blank Tab</button>
+			<p>{{ .Params.description }}</p>
+		  
+        </section>
+        
+
+
+        <section class="game-details">
+            <h2>{{ .Title }}</h2>
+            <p>{{ .Content }}</p>
+            <div class="tags">Tags: 
+			    {{ $tags := .Params.tags }}
+				{{ if $tags }}
+					{{ range $index, $tag := $tags }}
+					  
+						<span><a href="{{ $.Site.LanguagePrefix | absURL }}{{ $tag | urlize }}/" title="Play '{{ $tag }}' Unblocked Games">{{ $tag }}</a></span>
+					   
+					{{ end }}
+				{{ end }}
+                <!-- Repeat tags -->
+            </div>
+        </section>
+
+        <section class="related-games">
+            <h3>Related Games to "{{ .Params.gametitle }}".</h3>
+            <div class="gallery-grid">
+                <!-- Repeat this block for each game -->
+                {{ $currentPage := . }}
+				{{ $relatedPosts := (where .Site.RegularPages "Params.categories" "intersect" $currentPage.Params.categories) }}
+				{{ $relatedPosts = $relatedPosts | append (where .Site.RegularPages "Params.tags" "intersect" $currentPage.Params.tags) }}
+				{{ $relatedPosts = $relatedPosts | uniq }}
+                
+				
+				{{ range $post := $relatedPosts }}
+					{{ if ne $post.Permalink $currentPage.Permalink }}
+					   {{ partial "gallery-full-lazy-load.html" . }}
+					{{ end }}
+				{{ else }}
+					<p>No related posts found.</p>
+				{{ end }}
+                <!-- End game block -->
+            </div>
+        </section>
+		
+		<aside>
+          <section class="sidebar-ad">
+            {{ partial "banner-ads.html" . }}
+          </section>
+        </aside>
+		
+    </main>
+ 
+
+    {{ partial "footer.html" . }}
+
+</body>
+</html>

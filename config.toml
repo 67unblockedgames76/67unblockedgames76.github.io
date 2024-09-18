@@ -1,0 +1,35 @@
+baseURL = 'https://67unblockedgames76.github.io/'
+languageCode = 'en-us'
+title = 'Cool classroom 6x Unblocked Games'
+
+theme = 'my-simple-theme'
+
+enableRobotsTXT = true
+
+googleAnalytics = "G-R292Q31NC5"
+
+[permalinks]
+  posts = '/:slug/'
+  tags = '/:slug/'       # Adjust as needed
+  #category = '/categories/:slug/'  # Ensure this points to a category structure
+
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+
+[outputs]
+  home = ["HTML", "RSS"]
+  page = ["HTML", "JSON"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML"]
+  taxonomyTerm = ["HTML"]
+  
+[params]
+    showRelatedPosts = true #for lightbi related posts
+    description = "Tired of boring classwork? Unleash Your Inner Gamer: Unblocked Games for the Classroom and Beyond."
+	subtitle = "Classroom 6x"
+	author = "3kh0"
+	publisher = "Github Classroom 6x Unblocked Games"
+	
